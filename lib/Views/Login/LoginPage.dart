@@ -21,15 +21,33 @@ Column _welcomeMessage() {
     );
 }
 
-Column _inputFieldItem(String title) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [Text(title),
-         SizedBox(height: 4),
-        TextField(
-          decoration: InputDecoration(
-          ),
-         ),],);
+Widget _inputFieldItem(String title) {
+ return Container(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+    Text(title),
+    SizedBox(height: 8),
+    Container(
+      decoration: BoxDecoration(
+      border: Border.all(width: 1),
+      borderRadius: BorderRadius.circular(12),
+     ),
+     padding: EdgeInsets.only(bottom: 4),
+    child:
+    TextField(
+      cursorColor: Colors.transparent,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(10.0),
+        focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+        ),// pass the hint text parameter here
+      ),
+    ))],
+ ));
 }
 
 Container _inputFeild() {
