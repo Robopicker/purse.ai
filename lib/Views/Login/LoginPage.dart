@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 Container _topContent() {
-  return Container( child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [ Image.asset('assest/arrowBack.png', height: 40, width: 40,), Center(child: Text('Sign In', style: TextStyle(fontSize: 18, color: Colors.black, letterSpacing: 0.5),),)],));
+  return Container( child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [ Image.asset('assest/arrowBack.png', height: 40, width: 40,), Text('Sign In', style: TextStyle(fontSize: 18, color: Colors.black, letterSpacing: 0.5),)],));
 }
 
 Column _welcomeMessage() {
@@ -78,6 +78,22 @@ GestureDetector _signCta(BuildContext context) {
   );
 }
 
+Widget _renderOrView() {
+  return Column(children: [Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+    Container(height: 1, width: 140, decoration: BoxDecoration(color: Color.fromARGB(255, 194, 192, 192), border: Border.all(width: 1)),),
+    Text(' Or '),
+    Container(height: 1, width: 140, decoration: BoxDecoration(color: Color.fromARGB(255, 194, 192, 192), border: Border.all(width: 1)),)
+  ],),
+  SizedBox(height: 20,),
+  Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [Image.asset('assest/Google.png', height: 50, width: 50,), Image.asset('assest/apple.png', height: 50, width: 50,), Image.asset('assest/facebook.png', height: 50, width: 50,)],)]);
+}
+
 Container _mainContent(BuildContext context) {
   return Container(
     child: Column(
@@ -89,7 +105,9 @@ Container _mainContent(BuildContext context) {
       _inputFeild(),
       _signCta(context),
       SizedBox(height: 20,),
-      Center(child: Text("Don't have an account?"),)
+      Center(child: Text("Don't have an account?"),),
+      SizedBox(height: 20),
+      _renderOrView()
     ],
   ),
   padding: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20),);
