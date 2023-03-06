@@ -30,7 +30,7 @@ Widget _inputFieldItem(String title) {
     SizedBox(height: 8),
     Container(
       decoration: BoxDecoration(
-      border: Border.all(width: 1),
+      border: Border.all(width: 1, color: Color.fromARGB(255, 200, 199, 199)),
       borderRadius: BorderRadius.circular(12),
      ),
      padding: EdgeInsets.only(bottom: 4),
