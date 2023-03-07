@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:purse_ai_app/Component/GenericButton.dart';
 import 'package:purse_ai_app/Component/OtpInput.dart';
+import 'package:purse_ai_app/Utils/dialogUtils.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -12,8 +13,24 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<OtpScreen> {
+  onAgree() {
+    Navigator.pop(context);
+  }
+  onDisagree() {
+
+  }
+  Widget _dialogWidget() {
+    return Column(
+      children: [
+        Center(child: Text('I agree to the Terms of Service and Conditions of Use including consent to electronic communications and I affirm that the information provided is my own.')),
+        GenericButton(title: 'agree and continue', onCallback: onCallback),
+        SizedBox(height: 16,),
+        TextButton(onPressed: onDisagree, child: Text('Disagree', style: TextStyle(color: Color.fromARGB(255,79, 61, 86)),))
+      ],
+    );
+  }
   onCallback() {
-    print('dsvfvfdvfdvfdvf');
+    showDialogPopup(context, _dialogWidget());
   }
   onResendPressed() {
     print('resend prefd');
