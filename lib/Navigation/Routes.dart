@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:purse_ai_app/Views/Login/LoginPage.dart';
 import 'package:purse_ai_app/Views/Login/OtpScreen.dart';
 import 'package:purse_ai_app/Views/Login/SignupPage.dart';
+import 'package:purse_ai_app/Views/Send/SendMoneyPage.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,7 +13,9 @@ class RouteGenerator {
       case '/signup':
         return MaterialPageRoute(builder: ((context) => SignupPage()));  
       case '/otp':
-      return MaterialPageRoute(builder: ((context) => OtpScreen()));  
+      return MaterialPageRoute(builder: ((context) => OtpScreen())); 
+      case '/sendMoney':
+      return MaterialPageRoute(builder: ((context) => SendMoney())); 
       default:
         return MaterialPageRoute(builder: ((context) => LoginPage()));
     }
