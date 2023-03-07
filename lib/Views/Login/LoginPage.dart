@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 Container _topContent() {
-  return Container( child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [ Image.asset('assest/arrowBack.png', height: 40, width: 40,), Text('Sign In', style: TextStyle(fontSize: 18, color: Colors.black, letterSpacing: 0.5),)],));
+  return Container( child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [ Image.asset('assest/arrowBack.png', height: 40, width: 40,), Expanded(child: Center( child: Text('Sign In', style: TextStyle(fontSize: 18, color: Colors.black, letterSpacing: 0.5),)))],));
 }
 
 Column _welcomeMessage() {
