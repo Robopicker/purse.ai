@@ -66,7 +66,7 @@ class _MyWidgetState extends State<SendMoneySummaryPage> {
                    decoration: InputDecoration(
                    hintText: 'Add some message',
                    border: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(10))),
+                   borderRadius: BorderRadius.circular(16))),
       ),
         )
       ],
@@ -103,7 +103,6 @@ class _MyWidgetState extends State<SendMoneySummaryPage> {
       home: Scaffold(
         body: SafeArea(child: 
         Container(
-          
           decoration: BoxDecoration(color: Colors.white),
           child: _mainContent(),
           padding: EdgeInsets.only(left: 20, right: 20, top: 20),
