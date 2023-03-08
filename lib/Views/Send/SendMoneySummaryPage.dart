@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:purse_ai_app/Component/GenericButton.dart';
 import 'package:purse_ai_app/Component/GenericHeader.dart';
+import 'package:purse_ai_app/Views/Bills/PAyBillPopup.dart';
 
 class SendMoneySummaryPage extends StatefulWidget {
   const SendMoneySummaryPage({super.key});
@@ -73,7 +74,7 @@ class _MyWidgetState extends State<SendMoneySummaryPage> {
     );
   }
   onClick() {
-
+    showPayBillPopup(context);
   }
   Widget _payCta() {
     return GenericButton(title: 'send money', onCallback: onClick) ;
