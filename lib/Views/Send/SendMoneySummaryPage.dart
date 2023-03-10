@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:purse_ai_app/Api/moneypage.dart';
 import 'package:purse_ai_app/Component/GenericButton.dart';
 import 'package:purse_ai_app/Component/GenericHeader.dart';
 import 'package:purse_ai_app/Views/Bills/PAyBillPopup.dart';
 
 class SendMoneySummaryPage extends StatefulWidget {
-  const SendMoneySummaryPage({super.key});
-
+  final User data;
+  const SendMoneySummaryPage({super.key, required this.data});
   @override
   State<SendMoneySummaryPage> createState() => _MyWidgetState();
 }
 
 class _MyWidgetState extends State<SendMoneySummaryPage> {
   onBackPressed() {
-    print('fbdfvdfv');
+    Navigator.pop(context);
   }
   Widget _amountContent() {
     return Column(
@@ -41,7 +42,7 @@ class _MyWidgetState extends State<SendMoneySummaryPage> {
                   children: [
                     Icon(Icons.currency_bitcoin),
                     Text('USD'),
-                    Icon(Icons.arrow_downward)
+                    Icon(Icons.arrow_drop_down_rounded)
                   ],
                 ),
               ),
@@ -84,11 +85,16 @@ class _MyWidgetState extends State<SendMoneySummaryPage> {
       children: [
         GenericHeader(title: 'Send Money', onBackPressed: onBackPressed),
         SizedBox(height: 38,),
-        Image.asset('assest/UserIcon.png', height: 80, width: 80,),
+        CircleAvatar(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(140),
+              child: Image(image: NetworkImage(widget.data.thumbnail)),
+              ),
+            ),
         SizedBox(height: 20,),
-        Text('Tiana Saris', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 0.5),),
+        Text(widget.data.name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 0.5),),
         SizedBox(height: 4,),
-        Text('BCA • 2468 7645 6346', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: Color.fromARGB(255, 182, 178, 178)),),
+        Text(widget.data.email, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: Color.fromARGB(255, 182, 178, 178)),),
         SizedBox(height: 25,),
         _amountContent(),
         SizedBox(height: 25,),
@@ -100,6 +106,8 @@ class _MyWidgetState extends State<SendMoneySummaryPage> {
   }
   @override
   Widget build(BuildContext context) {
+    // Extract the arguments from the current ModalRoute
+    // settings and cast them as ScreenArguments.
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(child: 

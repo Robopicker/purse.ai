@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:purse_ai_app/Api/moneypage.dart';
 import 'package:purse_ai_app/Component/GenericHeader.dart';
 import 'package:purse_ai_app/Component/InputFields.dart';
+import 'package:purse_ai_app/Views/Send/UserListView.dart';
 
 class SendMoney extends StatefulWidget {
   const SendMoney({super.key});
@@ -12,9 +16,24 @@ class SendMoney extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<SendMoney> {
+  int filter = 0;
+
+  @protected
+    void didUpdateWidget(oldWidget) {
+      super.didUpdateWidget(oldWidget);
+      print('chainging state');
+     }
+  
+  @override
+  @mustCallSuper
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
   onBackPressed() {
     Navigator.pop(context);
   }
+
   Widget _notificationIcon() {
     return Container(
       padding: EdgeInsets.all(8),
@@ -39,14 +58,16 @@ class _MyWidgetState extends State<SendMoney> {
       ),
     );
   }
-  Widget _swtichIcon(title) {
+  Widget _swtichIcon(title, id) {
     return GestureDetector(
       onTap: () => {
-
+        setState(() {
+          filter = id;
+        })
       },
       child: Container(
         decoration: BoxDecoration(
-           color: Colors.white,
+           color: filter == id ? Colors.white : Colors.transparent,
           borderRadius: BorderRadius.circular(5),
         ),
         padding: EdgeInsets.only(left: 20, right: 20, top:8, bottom: 8),
@@ -64,20 +85,31 @@ class _MyWidgetState extends State<SendMoney> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-        _swtichIcon('All'),
-        _swtichIcon('Favorite'),
-        _swtichIcon('Bank'),
-        _swtichIcon('e-wallet')
+        _swtichIcon('All', 0),
+        _swtichIcon('Favorite', 1),
+        _swtichIcon('Bank', 2),
+        _swtichIcon('e-wallet', 3)
       ]),
     );
   }
+
+  onItemClick(User userData) {
+    print(userData);
+     Navigator.pushNamed(
+                  context,
+                  '/sendMoneySummary',
+                  arguments: userData,
+                );
+  }
+
   Widget _mainContainer() {
     return Container(
       child: Column(children: [
         GenericHeader(title: 'Send Money', onBackPressed: onBackPressed, trailingView: _notificationIcon(),),
         _searchContainer(),
         SizedBox(height: 20,),
-        _swtichContainer()
+        _swtichContainer(),
+        UserListView(filterId: filter, callback: onItemClick,)
       ]),
     );
   }
@@ -85,10 +117,11 @@ class _MyWidgetState extends State<SendMoney> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: SafeArea(child: Container(
-      child: Column(children: [
-        _mainContainer()
-      ]),
+      home: Scaffold(
+        body: SafeArea(child: Container(
+        child: Column(children: [
+          _mainContainer()
+        ]),
       padding: EdgeInsets.only(left: 20, right: 20),
     ))),);
   }
