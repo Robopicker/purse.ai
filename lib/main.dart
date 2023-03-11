@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/profilePage',
+      initialRoute: '/createPassword',
       onGenerateRoute: RouteGenerator.generateRoute,
       home: Scaffold(
         body: SafeArea(child: Container(child: Text('adszcsddscvcd'),)),
