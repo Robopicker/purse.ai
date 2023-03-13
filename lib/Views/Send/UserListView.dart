@@ -18,7 +18,33 @@ class UserListView extends StatefulWidget {
 class _MyWidgetState extends State<UserListView> {
     List<dynamic> users = [];
 
-    void fetchUser() async {
+    @override
+    void initState() {
+      super.initState();
+      print("in it state");
+    }
+
+   @override
+  @mustCallSuper
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    fetchUser();
+  }
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    if (oldWidget.filterId != widget.filterId) {
+      fetchUser();
+      print('calling again');
+    }
+  }
+
+  @override
+  void dispose() {
+    print('calling dispose');
+  }
+
+   void fetchUser() async {
     const url = 'https://randomuser.me/api/?results=10';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
@@ -34,21 +60,6 @@ class _MyWidgetState extends State<UserListView> {
     setState(() {
       users = resData;
     });
-  }
-
-   @override
-  @mustCallSuper
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    fetchUser();
-  }
-
-  @override
-  void didUpdateWidget(oldWidget) {
-    if (oldWidget.filterId != widget.filterId) {
-      fetchUser();
-      print('calling again');
-    }
   }
 
 

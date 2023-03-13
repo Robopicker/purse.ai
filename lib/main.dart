@@ -31,7 +31,7 @@ class _MyWidgetState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/createPassword',
+      initialRoute: '/profilePage',
       onGenerateRoute: RouteGenerator.generateRoute,
       home: Scaffold(
         body: SafeArea(child: Container(child: Text('adszcsddscvcd'),)),
