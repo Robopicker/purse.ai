@@ -20,10 +20,10 @@ class _MyWidgetState extends State<ProfilePage> {
     margin: EdgeInsets.only(bottom: 26, top: 24),
     );
   }
-  Widget _optionCta(dynamic image, String title) {
+  Widget _optionCta(dynamic image, String title, [ onPressed = null]) {
     return GestureDetector(
       onTap: () => {
-        print('clicking')
+       onPressed()
       },
       child: Column(
         children: [ Row(
@@ -37,6 +37,9 @@ class _MyWidgetState extends State<ProfilePage> {
       )
     );
   }
+  onProfilePressed() {
+    Navigator.of(context).pushNamed('/MyProfilePage');
+  }
   Widget _userInfo() {
     return Container(child: Column(
       children: [
@@ -49,7 +52,7 @@ class _MyWidgetState extends State<ProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
            children: [
            _renderOptionTitle('Personal Information'),
-        _optionCta(Icons.verified_user_outlined, 'Your Profile '),
+        _optionCta(Icons.verified_user_outlined, 'Your Profile ', onProfilePressed),
         _optionCta(Icons.download, 'History Transaction'),
         _renderOptionTitle('Security'),
         _optionCta(Icons.face, 'FaceId'),
@@ -67,8 +70,43 @@ class _MyWidgetState extends State<ProfilePage> {
   Widget logoutCta() {
     return Container(
       child: GestureDetector(
-        onTap: () => {
-
+        onTap: () => {    
+     showDialog(context: context,builder: (BuildContext context) {
+              return AlertDialog(
+                    scrollable: true,
+                    content: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          Align(alignment: Alignment.centerRight, child:  GestureDetector(
+                            onTap: () => {
+                              Navigator.pop(context)
+                            },
+                            child: Icon(Icons.close))),
+                            SizedBox(height: 12,),
+                            Center(
+                              child: Text('Are you sure want to Log Out?', style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),)),
+                            GestureDetector(
+                              onTap: () => {
+                                  Navigator.pop(context)
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(12),
+                                decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(6)),
+                                child: Text('Cancel', style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),),
+                              ),
+                            ),
+                             TextButton(onPressed: () => {
+                              Navigator.pop(context)
+                             }, child: Text('Logout'))
+                        ],
+                      ),
+                    ),
+                  );
+                })
         },
         child: Text('Logut', style: temp['textStyle'],)),
     );
