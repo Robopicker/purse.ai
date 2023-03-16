@@ -27,14 +27,17 @@ class _MyWidgetState extends State<MyApp> {
     FlutterNativeSplash.remove();
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/profilePage',
       onGenerateRoute: RouteGenerator.generateRoute,
       home: Scaffold(
-        body: SafeArea(child: Container(child: Text('adszcsddscvcd'),)),
+        body: SafeArea(
+            child: Container(
+          child: Text('adszcsddscvcd'),
+        )),
       ),
     );
   }
