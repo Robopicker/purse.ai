@@ -85,7 +85,7 @@ Widget _signCta(BuildContext context) {
         title: '${state.isLoggedIn}',
         onCallback: () => {
           // context.read<loginBloc>().login(new loginState(isLoggedIn: true, phoneNumber: 23453, password: '1223'))
-          context.read<loginBloc>().add(loginAction.login, : new loginState(isLoggedIn: true, phoneNumber: 213, password: '122'))
+          context.read<loginBloc>().add(loginAction.login)
 
         },
       );

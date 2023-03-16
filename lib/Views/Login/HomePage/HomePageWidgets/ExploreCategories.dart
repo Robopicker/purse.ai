@@ -40,7 +40,7 @@ Widget gridItem({index}) {
             decoration: BoxDecoration(
                 color: Colors.blueGrey[100],
                 borderRadius: BorderRadius.circular(12)),
-            child: (categoryList[index]['categoryIcon'])),
+            child: (Icon(categoryList[index]['categoryIcon']))),
         GenericText(
           title: categoryList[index]['title'],
           size: 16,

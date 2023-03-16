@@ -35,7 +35,7 @@ class _MyWidgetState extends State<MyApp> {
       create: (context) => loginBloc(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/login',
+        initialRoute: '/homepage',
         onGenerateRoute: RouteGenerator.generateRoute,
         home: Scaffold(
           body: SafeArea(
