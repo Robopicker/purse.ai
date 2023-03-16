@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:purse_ai_app/Views/Login/HomePage/HomePage.dart';
 import 'package:purse_ai_app/Api/moneypage.dart';
 import 'package:purse_ai_app/Views/Login/LoginPage.dart';
 import 'package:purse_ai_app/Views/Login/OtpScreen.dart';
@@ -19,27 +20,31 @@ class RouteGenerator {
       case '/login':
         return MaterialPageRoute(builder: ((context) => LoginPage()));
       case '/signup':
-        return MaterialPageRoute(builder: ((context) => SignupPage()));  
+        return MaterialPageRoute(builder: ((context) => SignupPage()));
+      case '/homepage':
+        return MaterialPageRoute(builder: ((context) => HomePage()));
       case '/otp':
-      return MaterialPageRoute(builder: ((context) => OtpScreen())); 
+        return MaterialPageRoute(builder: ((context) => OtpScreen()));
       case '/sendMoney':
-      return MaterialPageRoute(builder: ((context) => SendMoney())); 
-      case '/sendMoneySummary':{
-        final User argu = params as User;
-      return MaterialPageRoute(builder: ((context) => SendMoneySummaryPage(data: params)));
-      }
+        return MaterialPageRoute(builder: ((context) => SendMoney()));
+      case '/sendMoneySummary':
+        {
+          final User argu = params as User;
+          return MaterialPageRoute(
+              builder: ((context) => SendMoneySummaryPage(data: params)));
+        }
       case '/transactionPage':
         return MaterialPageRoute(builder: ((context) => TransactionPage()));
       case '/profilePage':
-        return MaterialPageRoute(builder: ((context) => ProfilePage())); 
+        return MaterialPageRoute(builder: ((context) => ProfilePage()));
       case '/forgotPassword':
-        return MaterialPageRoute(builder: ((context) => ForgotPassword())); 
+        return MaterialPageRoute(builder: ((context) => ForgotPassword()));
       case '/createPassword':
-      return MaterialPageRoute(builder:  ((context) => CreatePassword()));
+        return MaterialPageRoute(builder: ((context) => CreatePassword()));
       case '/MyProfilePage':
-      return MaterialPageRoute(builder: ((context) => MyProfilePage()));
+        return MaterialPageRoute(builder: ((context) => MyProfilePage()));
       case '/legalAndPolicy':
-      return MaterialPageRoute(builder: ((context) => LegalAndPolicy()));
+        return MaterialPageRoute(builder: ((context) => LegalAndPolicy()));
       default:
         return MaterialPageRoute(builder: ((context) => LoginPage()));
     }
