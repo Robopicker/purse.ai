@@ -36,7 +36,7 @@ class _MyWidgetState extends State<ForgotPassword> {
           color: Color.fromRGBO(156, 164, 171, 1)
         ),),
         SizedBox(height: 32,),
-        InputFields(info: 'Email'),
+        InputFields(info: 'Email', onChanged:  () => {}),
         SizedBox(height: 32,),
         GenericButton(title: 'Next', onCallback: onNextClicked)
       ],

@@ -41,9 +41,9 @@ class _MyWidgetState extends State<CreatePassword> {
           color: Color.fromRGBO(156, 164, 171, 1)
         ),),
         SizedBox(height: 32,),
-        InputFields(info: 'New Password'),
+        InputFields(info: 'New Password', onChanged:  () => {}),
         SizedBox(height: 24,),
-        InputFields(info: 'Confirm Password'),
+        InputFields(info: 'Confirm Password', onChanged:  () => {}),
         SizedBox(height: 20,),
         GenericButton(title: 'Next', onCallback: onNextClicked)
       ],

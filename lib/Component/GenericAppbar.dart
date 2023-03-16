@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:purse_ai_app/Utils/GenericText.dart';
+import 'package:purse_ai_app/Component/GenericText.dart';
 
 class GenericAppbar extends StatelessWidget {
   final bool showBackButton;

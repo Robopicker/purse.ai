@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:purse_ai_app/Utils/GenericAppbar.dart';
+import 'package:purse_ai_app/Component/GenericAppbar.dart';
 
 class Header extends StatefulWidget {
   const Header({super.key});

@@ -4,7 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class InputFields extends StatelessWidget {
   final String info;
-  const InputFields({super.key, required this.info});
+  final Function onChanged;
+  const InputFields({super.key, required this.info, required this.onChanged });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,9 @@ class InputFields extends StatelessWidget {
      padding: EdgeInsets.only(bottom: 4),
     child:
     TextField(
+      onChanged: (String val) => {
+        this.onChanged(val)
+      },
       cursorColor: Colors.transparent,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(10.0),

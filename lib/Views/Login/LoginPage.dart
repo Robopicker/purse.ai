@@ -3,8 +3,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:purse_ai_app/Bloc/loginBloc.dart';
-import 'package:purse_ai_app/Bloc/loginState.dart';
+import 'package:purse_ai_app/Bloc/user/userBloc.dart';
+import 'package:purse_ai_app/Bloc/user/userEvent.dart';
+import 'package:purse_ai_app/Bloc/user/userState.dart';
 import 'package:purse_ai_app/Component/GenericButton.dart';
 import 'package:purse_ai_app/Component/GenericHeader.dart';
 import 'package:purse_ai_app/Component/InputFields.dart';
@@ -53,7 +54,7 @@ Column _welcomeMessage() {
 }
 
 Widget _inputFieldItem(String title) {
-  return InputFields(info: title);
+  return InputFields(info: title, onChanged: () => {},);
 }
 
 Container _inputFeild() {
@@ -75,7 +76,7 @@ ctaCallback() {
 }
 
 Widget _signCta(BuildContext context) {
-  return BlocConsumer<loginBloc, loginState>(
+  return BlocConsumer<userBloc, userState>(
     listener: (context, state) {
       print(state);
       // TODO: implement listener
@@ -84,9 +85,7 @@ Widget _signCta(BuildContext context) {
       return GenericButton(
         title: '${state.isLoggedIn}',
         onCallback: () => {
-          // context.read<loginBloc>().login(new loginState(isLoggedIn: true, phoneNumber: 23453, password: '1223'))
-          context.read<loginBloc>().add(loginAction.login)
-
+          context.read<userBloc>().add(login(data: 'hererer'))
         },
       );
     },
@@ -102,9 +101,7 @@ Widget _renderOrView() {
 Container _mainContent(BuildContext context) {
   return Container(
     child: SingleChildScrollView(
-        child: Expanded(
-          flex: 1,
-          child: Column(
+            child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _topContent(),
@@ -114,12 +111,15 @@ Container _mainContent(BuildContext context) {
         _signCta(context),
         SizedBox(height: 20,),
         Center(
-          child: Text("Don't have an account?"),
+          child:  TextButton(child: Text("Don't have an account?", style: TextStyle(color: Colors.black),), onPressed: () => {
+            Navigator.of(context).pushNamed('/signup')
+          },) ,
         ),
         SizedBox(height: 20),
         _renderOrView()
       ],
-    ))),
+    )),
+    color: Colors.white,
     padding: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20),
   );
 }

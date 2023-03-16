@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:purse_ai_app/Component/GenericText.dart';
 import 'package:purse_ai_app/Utils/Constants.dart';
-import 'package:purse_ai_app/Utils/GenericText.dart';
 
 class ExploreCategories extends StatefulWidget {
   const ExploreCategories({super.key});

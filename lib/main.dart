@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:purse_ai_app/Bloc/loginBloc.dart';
+import 'package:purse_ai_app/Bloc/user/userBloc.dart';
 import 'package:purse_ai_app/Navigation/Routes.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -32,10 +32,10 @@ class _MyWidgetState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => loginBloc(),
+      create: (context) => userBloc(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/homepage',
+        initialRoute: '/loginPage',
         onGenerateRoute: RouteGenerator.generateRoute,
         home: Scaffold(
           body: SafeArea(
