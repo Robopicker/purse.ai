@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:purse_ai_app/Navigation/Routes.dart';
 
 void main() {
-  runApp(const MyApp(
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,10 +12,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/homepage',
       onGenerateRoute: RouteGenerator.generateRoute,
       home: Scaffold(
-        body: SafeArea(child: Container(child: Text('adszcsddscvcd'),)),
+        body: SafeArea(
+            child: Container(
+          child: Text('adszcsddscvcd'),
+        )),
       ),
     );
   }
