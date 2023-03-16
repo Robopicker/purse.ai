@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:purse_ai_app/Bloc/loginBloc.dart';
 import 'package:purse_ai_app/Navigation/Routes.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -27,14 +29,20 @@ class _MyWidgetState extends State<MyApp> {
     FlutterNativeSplash.remove();
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/profilePage',
-      onGenerateRoute: RouteGenerator.generateRoute,
-      home: Scaffold(
-        body: SafeArea(child: Container(child: Text('adszcsddscvcd'),)),
+    return BlocProvider(
+      create: (context) => loginBloc(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/login',
+        onGenerateRoute: RouteGenerator.generateRoute,
+        home: Scaffold(
+          body: SafeArea(
+              child: Container(
+            child: Text('adszcsddscvcd'),
+          )),
+        ),
       ),
     );
   }
