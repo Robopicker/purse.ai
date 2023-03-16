@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:purse_ai_app/Component/GenericButton.dart';
+import 'package:purse_ai_app/Component/GenericHeader.dart';
+import 'package:purse_ai_app/Component/InputFields.dart';
+import 'package:purse_ai_app/Component/LoginPanels.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,8 +14,12 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _MyWidgetState();
 }
 
-Container _topContent() {
-  return Container( child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [ Image.asset('assest/arrowBack.png', height: 40, width: 40,), Expanded(child: Center( child: Text('Sign In', style: TextStyle(fontSize: 18, color: Colors.black, letterSpacing: 0.5),)))],));
+ onBackPressed() {
+  print('vfef');
+}
+
+Widget _topContent() {
+  return GenericHeader(title: 'Sign In', onBackPressed: onBackPressed,);
 }
 
 Column _welcomeMessage() {
@@ -22,32 +30,7 @@ Column _welcomeMessage() {
 }
 
 Widget _inputFieldItem(String title) {
- return Container(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-    Text(title),
-    SizedBox(height: 8),
-    Container(
-      decoration: BoxDecoration(
-      border: Border.all(width: 1, color: Color.fromARGB(255, 200, 199, 199)),
-      borderRadius: BorderRadius.circular(12),
-     ),
-     padding: EdgeInsets.only(bottom: 4),
-    child:
-    TextField(
-      cursorColor: Colors.transparent,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(10.0),
-        focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-        ),// pass the hint text parameter here
-      ),
-    ))],
- ));
+  return InputFields(info: title);
 }
 
 Container _inputFeild() {
@@ -64,39 +47,22 @@ Container _inputFeild() {
   );
 }
 
-GestureDetector _signCta(BuildContext context) {
-  return GestureDetector(
-    onTap: () => {
-      Navigator.of(context).pushNamed('/signup')
-    },
-    child: Container(
-      height: 42,
-      margin: EdgeInsets.only(top:80),
-      decoration: BoxDecoration(color: Color.fromARGB(255,79, 61, 86), borderRadius: BorderRadius.circular(12)),
-      child: Center(child: Text('SignIn', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),)),
-    ),
-  );
+ctaCallback() {
+  print('dsvfdvd');
+}
+
+Widget _signCta(BuildContext context) {
+
+  return GenericButton(title: 'Login Now', onCallback: ctaCallback,);
 }
 
 Widget _renderOrView() {
-  return Column(children: [Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-    Container(height: 1, width: 140, decoration: BoxDecoration(color: Color.fromARGB(255, 194, 192, 192), border: Border.all(width: 1)),),
-    Text(' Or '),
-    Container(height: 1, width: 140, decoration: BoxDecoration(color: Color.fromARGB(255, 194, 192, 192), border: Border.all(width: 1)),)
-  ],),
-  SizedBox(height: 20,),
-  Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [Image.asset('assest/Google.png', height: 50, width: 50,), Image.asset('assest/apple.png', height: 50, width: 50,), Image.asset('assest/facebook.png', height: 50, width: 50,)],)]);
+  return LoginPanels(title: 'Or',);
 }
 
 Container _mainContent(BuildContext context) {
   return Container(
-    child: Column(
+    child: SingleChildScrollView(child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       _topContent(),
@@ -109,7 +75,7 @@ Container _mainContent(BuildContext context) {
       SizedBox(height: 20),
       _renderOrView()
     ],
-  ),
+  )),
   padding: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20),);
 }
 
