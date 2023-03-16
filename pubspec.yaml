@@ -35,14 +35,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-<<<<<<< HEAD
   scroll_snap_list:
-=======
   pinput: ^2.2.21
   fl_chart: ^0.61.0
   http: ^0.13.5
   flutter_native_splash: ^2.2.18
->>>>>>> fe99a7658d79325cb35801062f89047b8906ffbb
 
 dev_dependencies:
   flutter_test:
