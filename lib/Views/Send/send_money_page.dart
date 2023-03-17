@@ -117,14 +117,8 @@ class _MyWidgetState extends State<SendMoney> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          body: SafeArea(
-              child: Container(
+    return Container(
         padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(children: [mainContainer()]),
-      ))),
-    );
+        child: mainContainer());
   }
 }

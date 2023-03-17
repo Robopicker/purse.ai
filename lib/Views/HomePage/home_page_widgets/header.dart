@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:purse_ai_app/Component/generic_app_bar.dart';
 

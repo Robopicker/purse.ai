@@ -1,4 +1,8 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
+import 'package:purse_ai_app/Component/generic_text.dart';
+import 'package:purse_ai_app/Utils/card_utils.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 
 class Cards extends StatefulWidget {
@@ -9,21 +13,105 @@ class Cards extends StatefulWidget {
 }
 
 class _CardsState extends State<Cards> {
-  List<int> data = [0, 1, 2];
+  List<CardClass> list = [
+    const CardClass(
+        cardName: 'Yogesh',
+        amount: '\$12345',
+        expire: '12/24',
+        cardType: 'VISA',
+        pin: '4567',
+        bgColor: Colors.brown),
+    const CardClass(
+        cardName: 'Yogesh',
+        amount: '\$12345',
+        expire: '12/24',
+        cardType: 'VISA',
+        pin: '4567',
+        bgColor: Colors.orange)
+  ];
   int activeIndex = 0;
 
   Widget itemList(BuildContext context, int index) {
     return SizedBox(
-        width: 250,
-        child: Card(
-          color: Colors.blueGrey[100],
-          elevation: 10,
-          child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
-              child: Center(
-                child: Text(index.toString()),
-              )),
-        ));
+      width: 270,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: list[index].bgColor,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                    child: GenericText(
+                  title: list[index].cardName,
+                  size: 12,
+                  lineHeight: 20,
+                  textColor: Colors.white,
+                )),
+                GenericText(
+                  title: list[index].cardType,
+                  size: 20,
+                  lineHeight: 26,
+                  textColor: Colors.white,
+                  fontWeight: FontWeight.w800,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const GenericText(
+                  title: 'Balance',
+                  size: 14,
+                  lineHeight: 22,
+                  textColor: Colors.grey,
+                  fontWeight: FontWeight.w400,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                GenericText(
+                  title: list[index].amount,
+                  size: 24,
+                  lineHeight: 24,
+                  textColor: Colors.white,
+                  fontWeight: FontWeight.w600,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: GenericText(
+                  title: '***** ${list[index].pin}',
+                  size: 16,
+                  lineHeight: 24,
+                  textColor: Colors.grey,
+                )),
+                GenericText(
+                  title: list[index].expire,
+                  textColor: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  size: 12,
+                  lineHeight: 20,
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -35,8 +123,8 @@ class _CardsState extends State<Cards> {
           height: 263,
           child: ScrollSnapList(
             itemBuilder: itemList,
-            itemSize: 250,
-            itemCount: data.length,
+            itemSize: 290,
+            itemCount: list.length,
             onItemFocus: (index) => setState(() {
               activeIndex = index;
             }),
@@ -45,7 +133,7 @@ class _CardsState extends State<Cards> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: data.map((index) {
+          children: list.map((index) {
             return Container(
               width: 8.0,
               height: 8.0,
