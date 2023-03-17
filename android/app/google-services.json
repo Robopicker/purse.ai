@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "688853189617",
+    "project_id": "purse-app-13491",
+    "storage_bucket": "purse-app-13491.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688853189617:android:87d8b4a8a2a80bc6c27a50",
+        "android_client_info": {
+          "package_name": "com.example.purse_ai_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688853189617-oke1te4vspodj5ndbft7p5j13bdlh86u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf7p1aOsrstyhgefwr-ST2z_40gCZEvHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688853189617-oke1te4vspodj5ndbft7p5j13bdlh86u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "688853189617-dtmomcaq51nn6imbsa8n2u2n16te8i3j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.purseAiApp.ios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
