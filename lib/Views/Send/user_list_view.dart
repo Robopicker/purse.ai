@@ -6,22 +6,22 @@ import 'package:purse_ai_app/Api/money_page.dart';
 class UserListView extends StatefulWidget {
   final int filterId;
   final Function callback;
-  const UserListView({super.key, required this.filterId, required this.callback});
+  const UserListView(
+      {super.key, required this.filterId, required this.callback});
 
   @override
   State<UserListView> createState() => _MyWidgetState();
 }
 
 class _MyWidgetState extends State<UserListView> {
-    List<dynamic> users = [];
+  List<dynamic> users = [];
 
-    @override
-    void initState() {
-      super.initState();
-      print("in it state");
-    }
+  @override
+  void initState() {
+    super.initState();
+  }
 
-   @override
+  @override
   @mustCallSuper
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -33,17 +33,15 @@ class _MyWidgetState extends State<UserListView> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.filterId != widget.filterId) {
       fetchUser();
-      print('calling again');
     }
   }
 
   @override
   void dispose() {
     super.dispose();
-    print('calling dispose');
   }
 
-   void fetchUser() async {
+  void fetchUser() async {
     const url = 'https://randomuser.me/api/?results=10';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
@@ -61,37 +59,35 @@ class _MyWidgetState extends State<UserListView> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: Container(
-         padding: const EdgeInsets.only(top: 20),
-         child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: users.length,
-          itemBuilder: (context, index) {
-            final user = users[index];
-            final name = user.name;
-            final email = user.email;
-            final thumbnail = user.thumbnail;
-            return ListTile(
-              onTap: () => {
-                widget.callback(user)
-              },
-              leading: CircleAvatar(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image(image: NetworkImage(thumbnail)),
-                ),
-              ),
-              title: Text(name),
-              subtitle: Text(email),
-              trailing: const Icon(
-                Icons.star_border_rounded,
-                color: Colors.deepPurpleAccent,
-              ),
-            );
-          })));
+    return SingleChildScrollView(
+        child: Container(
+            padding: const EdgeInsets.only(top: 20),
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: users.length,
+                itemBuilder: (context, index) {
+                  final user = users[index];
+                  final name = user.name;
+                  final email = user.email;
+                  final thumbnail = user.thumbnail;
+                  return ListTile(
+                    onTap: () => {widget.callback(user)},
+                    leading: CircleAvatar(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image(image: NetworkImage(thumbnail)),
+                      ),
+                    ),
+                    title: Text(name),
+                    subtitle: Text(email),
+                    trailing: const Icon(
+                      Icons.star_border_rounded,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                  );
+                })));
   }
 }

@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +42,7 @@ class _MyWidgetState extends State<MyApp> {
         initialRoute: '/UserLoginPage',
         onGenerateRoute: RouteGenerator.generateRoute,
         home: Scaffold(
-          body: SafeArea(
-              child: Text('adszcsddscvcd')),
+          body: SafeArea(child: Text('adszcsddscvcd')),
         ),
       ),
     );

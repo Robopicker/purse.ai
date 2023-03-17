@@ -15,11 +15,10 @@ class _MyWidgetState extends State<SendMoney> {
 
   @override
   @protected
-    void didUpdateWidget(oldWidget) {
-      super.didUpdateWidget(oldWidget);
-      print('chainging state');
-     }
-  
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
   @override
   @mustCallSuper
   void didChangeDependencies() {
@@ -32,28 +31,29 @@ class _MyWidgetState extends State<SendMoney> {
 
   Widget notificationIcon() {
     return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(40),
-        color: const Color.fromARGB(255, 233, 232, 232)
-      ),
-      child: GestureDetector(
-      onTap: () => {},
-      child: const Icon(Icons.notifications),
-    ));
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(40),
+            color: const Color.fromARGB(255, 233, 232, 232)),
+        child: GestureDetector(
+          onTap: () => {},
+          child: const Icon(Icons.notifications),
+        ));
   }
+
   Widget searchContainer() {
     return Container(
       padding: const EdgeInsets.only(top: 24),
       child: TextField(
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.search),
-          hintText: 'Search Contact',
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10))),
+            prefixIcon: const Icon(Icons.search),
+            hintText: 'Search Contact',
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
       ),
     );
   }
+
   Widget swtichIcon(title, id) {
     return GestureDetector(
       onTap: () => {
@@ -63,24 +63,23 @@ class _MyWidgetState extends State<SendMoney> {
       },
       child: Container(
         decoration: BoxDecoration(
-           color: filter == id ? Colors.white : Colors.transparent,
+          color: filter == id ? Colors.white : Colors.transparent,
           borderRadius: BorderRadius.circular(5),
         ),
-        padding: const EdgeInsets.only(left: 20, right: 20, top:8, bottom: 8),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 8, bottom: 8),
         child: Text(title),
       ),
     );
   }
+
   Widget swtichContainer() {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-         color: const Color.fromARGB(255, 224, 221, 221),
+        color: const Color.fromARGB(255, 224, 221, 221),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         swtichIcon('All', 0),
         swtichIcon('Favorite', 1),
         swtichIcon('Bank', 2),
@@ -90,33 +89,42 @@ class _MyWidgetState extends State<SendMoney> {
   }
 
   onItemClick(User userData) {
-    print(userData);
-     Navigator.pushNamed(
-                  context,
-                  '/sendMoneySummary',
-                  arguments: userData,
-                );
+    Navigator.pushNamed(
+      context,
+      '/sendMoneySummary',
+      arguments: userData,
+    );
   }
 
   Widget mainContainer() {
     return Column(children: [
-      GenericHeader(title: 'Send Money', onBackPressed: onBackPressed, trailingView: notificationIcon(),),
+      GenericHeader(
+        title: 'Send Money',
+        onBackPressed: onBackPressed,
+        trailingView: notificationIcon(),
+      ),
       searchContainer(),
-      const SizedBox(height: 20,),
+      const SizedBox(
+        height: 20,
+      ),
       swtichContainer(),
-      UserListView(filterId: filter, callback: onItemClick,)
+      UserListView(
+        filterId: filter,
+        callback: onItemClick,
+      )
     ]);
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SafeArea(child: Container(
+          body: SafeArea(
+              child: Container(
         padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(children: [
-          mainContainer()
-        ]),
-    ))),);
+        child: Column(children: [mainContainer()]),
+      ))),
+    );
   }
 }
