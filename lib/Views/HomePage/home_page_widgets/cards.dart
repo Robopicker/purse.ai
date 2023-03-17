@@ -33,7 +33,7 @@ class _CardsState extends State<Cards> {
 
   Widget itemList(BuildContext context, int index) {
     return SizedBox(
-      width: 270,
+      width: 250,
       child: Container(
         margin: const EdgeInsets.only(bottom: 24),
         padding: const EdgeInsets.all(24),
@@ -120,7 +120,7 @@ class _CardsState extends State<Cards> {
       children: [
         Container(
           margin: const EdgeInsets.only(top: 50, bottom: 16),
-          height: 263,
+          height: 250,
           child: ScrollSnapList(
             itemBuilder: itemList,
             itemSize: 290,

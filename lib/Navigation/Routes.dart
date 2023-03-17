@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:purse_ai_app/Api/money_page.dart';
+import 'package:purse_ai_app/Views/AppLanding/landing_page.dart';
 import 'package:purse_ai_app/Views/HomePage/home_page.dart';
 import 'package:purse_ai_app/Views/Login/login_page.dart';
 import 'package:purse_ai_app/Views/Login/otp_screen.dart';
@@ -34,17 +35,23 @@ class RouteGenerator {
               builder: ((context) => SendMoneySummaryPage(data: argu)));
         }
       case '/transactionPage':
-        return MaterialPageRoute(builder: ((context) => const TransactionPage()));
+        return MaterialPageRoute(
+            builder: ((context) => const TransactionPage()));
       case '/profilePage':
         return MaterialPageRoute(builder: ((context) => const ProfilePage()));
       case '/forgotPassword':
-        return MaterialPageRoute(builder: ((context) => const ForgotPassword()));
+        return MaterialPageRoute(
+            builder: ((context) => const ForgotPassword()));
       case '/createPassword':
-        return MaterialPageRoute(builder: ((context) => const CreatePassword()));
+        return MaterialPageRoute(
+            builder: ((context) => const CreatePassword()));
       case '/MyProfilePage':
         return MaterialPageRoute(builder: ((context) => const MyProfilePage()));
       case '/legalAndPolicy':
-        return MaterialPageRoute(builder: ((context) => const LegalAndPolicy()));
+        return MaterialPageRoute(
+            builder: ((context) => const LegalAndPolicy()));
+      case '/landingPage':
+        return MaterialPageRoute(builder: ((context) => const LandingPage()));
       default:
         return MaterialPageRoute(builder: ((context) => const UserLoginPage()));
     }
