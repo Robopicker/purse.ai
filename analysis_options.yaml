@@ -9,6 +9,21 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer: 
+   errors: 
+     camel_case_types: error
+     lines_longer_than_80_chars: error
+     library_names: error
+     avoid_empty_else: error
+     unnecessary_brace_in_string_interps: error
+     curly_braces_in_flow_control_structures: error
+     empty_constructor_bodies: error
+     missing_whitespace_between_adjacent_strings: warning
+     void_checks: error
+     avoid_print: info
+     unawaited_futures: error
+     unnecessary_final: error
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
@@ -22,7 +37,22 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
+    - camel_case_types : true
+    - library_names : true
+    - avoid_catches_without_on_clauses
+    - avoid_empty_else : true
+    - unnecessary_brace_in_string_interps : true
+    - leading_newlines_in_multiline_strings
+    - lines_longer_than_80_chars: true
+    - curly_braces_in_flow_control_structures
+    - empty_constructor_bodies: true
+    - missing_whitespace_between_adjacent_strings
+    - unawaited_futures: true
+    - unnecessary_final: true
+    - use_enums: true
+    - void_checks : true
+    - avoid_print : false
+     # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 
 # Additional information about this file can be found at
