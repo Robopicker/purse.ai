@@ -1,8 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:purse_ai_app/Bloc/user/user_event.dart';
 import 'package:purse_ai_app/Bloc/user/user_state.dart';
 
-class UserBloc extends Bloc<UserEvent, UserState> {
+@JsonSerializable()
+class UserBloc extends HydratedBloc<UserEvent, UserState> {
   UserBloc()
       : super(UserState(isLoggedIn: false, name: '', email: '', password: '')) {
     on((event, emit) => emit(getRes(event)));
@@ -24,5 +26,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     } else if (event is UserLogout) {
       return UserState(isLoggedIn: false, name: '', password: '', email: '');
     }
+  }
+
+  @override
+  UserState? fromJson(Map<String, dynamic> json) {
+    return UserState.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic>? toJson(UserState state) {
+    return state.toJson();
   }
 }
