@@ -42,15 +42,12 @@ class _MyWidgetState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserBloc(),
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute: '/loginPage',
-        onGenerateRoute: RouteGenerator.generateRoute,
-        home: Scaffold(
-          body: SafeArea(child: Text('adszcsddscvcd')),
-        ),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/homepage',
+      onGenerateRoute: RouteGenerator.generateRoute,
+      home: Scaffold(
+        body: SafeArea(child: Text('adszcsddscvcd')),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:purse_ai_app/Api/money_page.dart';
 import 'package:purse_ai_app/Component/generic_header.dart';
+import 'package:purse_ai_app/Models/user_model.dart';
 import 'package:purse_ai_app/Views/Send/user_list_view.dart';
 
 class SendMoney extends StatefulWidget {

@@ -131,14 +131,17 @@ class _MyWidgetState extends State<UserLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            body: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(color: Colors.white),
-            child: _mainContent(context),
-          ),
-        )));
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: ((context) => UserBloc()))],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+              body: SafeArea(
+            child: Container(
+              decoration: const BoxDecoration(color: Colors.white),
+              child: _mainContent(context),
+            ),
+          ))),
+    );
   }
 }
