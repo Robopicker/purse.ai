@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:purse_ai_app/Api/money_page.dart';
 import 'package:purse_ai_app/Component/bar_chart.dart';
 import 'package:purse_ai_app/Component/generic_header.dart';
 import 'package:http/http.dart' as http;
+import 'package:purse_ai_app/Models/user_model.dart';
 
 class TransactionPage extends StatefulWidget {
   const TransactionPage({super.key});

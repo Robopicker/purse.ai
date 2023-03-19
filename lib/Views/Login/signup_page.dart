@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:purse_ai_app/Api/auth.dart';
 import 'package:purse_ai_app/Bloc/user/user_bloc.dart';
-import 'package:purse_ai_app/Bloc/user/user_event.dart';
 import 'package:purse_ai_app/Bloc/user/user_state.dart';
 import 'package:purse_ai_app/Component/generic_button.dart';
 import 'package:purse_ai_app/Component/generic_header.dart';
@@ -57,25 +55,31 @@ class _MyWidgetState extends State<SignupPage> {
         padding: const EdgeInsets.only(top: 48),
         child: Column(
           children: [
-            InputFields(info: 'full Name', onChanged:  (val) => {
-              setState(() {
-                name=val;
-              })
-            }),
+            InputFields(
+                info: 'full Name',
+                onChanged: (val) => {
+                      setState(() {
+                        name = val;
+                      })
+                    }),
             const SizedBox(height: 16),
-            InputFields(info: 'Email Address', onChanged:  (val) => {
-                setState(() {
-                email=val;
-              })
-            }),
+            InputFields(
+                info: 'Email Address',
+                onChanged: (val) => {
+                      setState(() {
+                        email = val;
+                      })
+                    }),
             const SizedBox(
               height: 16,
             ),
-            InputFields(info: 'Password', onChanged:  (val) => {
-                setState(() {
-                password=val;
-              })
-            }),
+            InputFields(
+                info: 'Password',
+                onChanged: (val) => {
+                      setState(() {
+                        password = val;
+                      })
+                    }),
             const SizedBox(
               height: 16,
             )
@@ -84,7 +88,7 @@ class _MyWidgetState extends State<SignupPage> {
   }
 
   createProfile1() {
-     createProfile(CreateAccount(name: name, email: email, password: password));
+    //  createPR(CreateAccount(name: name, email: email, password: password));
   }
 
   Widget _submitCta() {
@@ -95,15 +99,22 @@ class _MyWidgetState extends State<SignupPage> {
         }
       },
       builder: (context, state) {
-        return GenericButton(title: 'Continue', onCallback: () => {
-          if (name != '' && email != '' && password != '') {
-          //  BlocProvider.of<UserBloc>(context)
-          //                 .add(CreateAccount(name: name, email: email, password: password))
-          createProfile1()
-          } else {
-            const AlertDialog(title: Text('add data'),)
-          }
-        });
+        return GenericButton(
+            title: 'Continue',
+            onCallback: () => {
+                  if (name != '' && email != '' && password != '')
+                    {
+                      //  BlocProvider.of<UserBloc>(context)
+                      //                 .add(CreateAccount(name: name, email: email, password: password))
+                      createProfile1()
+                    }
+                  else
+                    {
+                      const AlertDialog(
+                        title: Text('add data'),
+                      )
+                    }
+                });
       },
     );
   }
@@ -115,7 +126,8 @@ class _MyWidgetState extends State<SignupPage> {
       home: Scaffold(
         body: SafeArea(
             child: Container(
-          padding: const EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20),
+          padding:
+              const EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20),
           child: SingleChildScrollView(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

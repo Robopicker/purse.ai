@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:purse_ai_app/Api/money_page.dart';
+import 'package:purse_ai_app/Models/user_model.dart';
 import 'package:purse_ai_app/Views/AppLanding/landing_page.dart';
 import 'package:purse_ai_app/Views/HomePage/home_page.dart';
 import 'package:purse_ai_app/Views/Login/login_page.dart';
