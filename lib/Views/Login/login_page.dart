@@ -76,9 +76,7 @@ class _MyWidgetState extends State<UserLoginPage> {
 
   Widget _signCta(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
-      listener: (context, state) {
-        print(state);
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return GenericButton(
           title: '${state.isLoggedIn} here',

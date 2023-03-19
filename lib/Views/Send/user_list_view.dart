@@ -34,7 +34,6 @@ class _MyWidgetState extends State<UserListView> {
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.filterId != widget.filterId) {
-      print('here');
       transactionBloc.add(GetTransactionData());
     }
   }
@@ -54,7 +53,7 @@ class _MyWidgetState extends State<UserListView> {
         }
       },
       child: BlocConsumer<TransactionBloc, TransactionState>(
-        listener: (context, state) => {print('statt'), print(state)},
+        listener: (context, state) => {},
         builder: (context, state) {
           if (state is TransactionLoading) {
             return const Text('loaind ');
@@ -63,7 +62,6 @@ class _MyWidgetState extends State<UserListView> {
           } else if (state is TransactionInitial) {
             return const Text('initial');
           } else if (state is TransactionLoaded) {
-            print('vfd');
             return ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
