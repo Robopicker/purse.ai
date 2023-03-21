@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:purse_ai_app/Bloc/bloc/counter_bloc.dart';
 import 'package:purse_ai_app/Bloc/transactions/transaction_bloc.dart';
 import 'package:purse_ai_app/Bloc/transactions/transaction_event.dart';
 import 'package:purse_ai_app/Bloc/transactions/transaction_state.dart';
@@ -16,11 +17,12 @@ class UserListView extends StatefulWidget {
 
 class _MyWidgetState extends State<UserListView> {
   List<dynamic> users = [];
-  final TransactionBloc transactionBloc = TransactionBloc();
 
   @override
   void initState() {
-    transactionBloc.add(GetTransactionData());
+    print('here');
+    // transactionBloc.add(GetTransactionData());
+    BlocProvider.of<TransactionBloc>(context).add(GetTransactionData());
     super.initState();
   }
 
@@ -34,24 +36,30 @@ class _MyWidgetState extends State<UserListView> {
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.filterId != widget.filterId) {
-      transactionBloc.add(GetTransactionData());
+      BlocProvider.of<TransactionBloc>(context).add(GetTransactionData());
     }
   }
 
-  @override
-  void dispose() {
-    transactionBloc.close();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   print('dsvfd');
+  //   super.dispose();
+  // }
 
   Widget listView() {
-    return BlocListener<TransactionBloc, TransactionState>(
-      listener: (context, state) {
-        if (state is TransactionEror) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('getting error')));
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CounterBloc, int>(
+          listener: (context, state) =>
+              {print('chaging state in user live view')},
+        ),
+        BlocListener<TransactionBloc, TransactionState>(
+          listener: (context, state) => {
+            if (state is TransactionLoaded)
+              {BlocProvider.of<CounterBloc>(context).add(IncrementCounter())}
+          },
+        )
+      ],
       child: BlocConsumer<TransactionBloc, TransactionState>(
         listener: (context, state) => {},
         builder: (context, state) {
@@ -62,31 +70,40 @@ class _MyWidgetState extends State<UserListView> {
           } else if (state is TransactionInitial) {
             return const Text('initial');
           } else if (state is TransactionLoaded) {
-            return ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: state.list.length,
-                itemBuilder: (context, index) {
-                  final user = state.list[index];
-                  final name = user.name;
-                  final email = user.email;
-                  final thumbnail = user.thumbnail;
-                  return ListTile(
-                    onTap: () => {widget.callback(user)},
-                    leading: CircleAvatar(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image(image: NetworkImage(thumbnail)),
-                      ),
-                    ),
-                    title: Text(name),
-                    subtitle: Text(email),
-                    trailing: const Icon(
-                      Icons.star_border_rounded,
-                      color: Colors.deepPurpleAccent,
-                    ),
-                  );
-                });
+            return Column(
+              children: [
+                BlocBuilder<CounterBloc, int>(
+                  builder: (context, state) {
+                    return Text(state.toString());
+                  },
+                ),
+                ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: state.list.length,
+                    itemBuilder: (context, index) {
+                      final user = state.list[index];
+                      final name = user.name;
+                      final email = user.email;
+                      final thumbnail = user.thumbnail;
+                      return ListTile(
+                        onTap: () => {widget.callback(user)},
+                        leading: CircleAvatar(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image(image: NetworkImage(thumbnail)),
+                          ),
+                        ),
+                        title: Text(name),
+                        subtitle: Text(email),
+                        trailing: const Icon(
+                          Icons.star_border_rounded,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                      );
+                    }),
+              ],
+            );
           } else {
             return const Text('nothing to render');
           }
@@ -98,10 +115,8 @@ class _MyWidgetState extends State<UserListView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: BlocProvider(
-      create: (_) => transactionBloc,
       child:
           Container(padding: const EdgeInsets.only(top: 20), child: listView()),
-    ));
+    );
   }
 }

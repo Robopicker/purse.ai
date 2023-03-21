@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:purse_ai_app/Bloc/bloc/counter_bloc.dart';
+import 'package:purse_ai_app/Bloc/transactions/transaction_bloc.dart';
 import 'package:purse_ai_app/Component/generic_header.dart';
 import 'package:purse_ai_app/Models/user_model.dart';
+import 'package:purse_ai_app/Views/Send/counter_page.dart';
 import 'package:purse_ai_app/Views/Send/user_list_view.dart';
 
 class SendMoney extends StatefulWidget {
@@ -12,6 +16,8 @@ class SendMoney extends StatefulWidget {
 
 class _MyWidgetState extends State<SendMoney> {
   int filter = 0;
+  TransactionBloc transactionBloc = TransactionBloc();
+  CounterBloc counterBloc = CounterBloc();
 
   @override
   @protected
@@ -103,6 +109,7 @@ class _MyWidgetState extends State<SendMoney> {
         onBackPressed: onBackPressed,
         trailingView: notificationIcon(),
       ),
+      CounterPage(),
       searchContainer(),
       const SizedBox(
         height: 20,
@@ -117,8 +124,18 @@ class _MyWidgetState extends State<SendMoney> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: mainContainer());
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => transactionBloc,
+        ),
+        BlocProvider(
+          create: (_) => counterBloc,
+        ),
+      ],
+      child: Container(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: mainContainer()),
+    );
   }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:purse_ai_app/Bloc/transactions/transaction_bloc.dart';
+import 'package:purse_ai_app/Bloc/transactions/transaction_state.dart';
 import 'package:purse_ai_app/Component/generic_header.dart';
 import 'package:purse_ai_app/Component/generic_text.dart';
 import 'package:purse_ai_app/Utils/card_utils.dart';
@@ -116,26 +119,40 @@ class _MyWidgetState extends State<MyCard> {
   }
 
   Widget mainContent() {
-    return Column(
-      children: [
-        GenericHeader(
-          title: 'All Cards',
-          onBackPressed: onBackPressed,
-          trailingView: const Icon(Icons.settings),
-        ),
-        const SizedBox(
-          height: 24,
-        ),
-        listViewContent()
-      ],
+    return BlocConsumer<TransactionBloc, TransactionState>(
+      listener: (context, state) {
+        // TODO: implement listener
+        if (state is TransactionLoaded) {
+          print("here");
+        }
+      },
+      builder: (context, state) {
+        return Column(
+          children: [
+            Text(state.toString()),
+            GenericHeader(
+              title: 'All Cards',
+              onBackPressed: onBackPressed,
+              trailingView: const Icon(Icons.settings),
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            listViewContent()
+          ],
+        );
+      },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: mainContent(),
+    return BlocProvider(
+      create: (context) => TransactionBloc(),
+      child: Container(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: mainContent(),
+      ),
     );
   }
 }
