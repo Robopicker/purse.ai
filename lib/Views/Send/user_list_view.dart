@@ -20,8 +20,6 @@ class _MyWidgetState extends State<UserListView> {
 
   @override
   void initState() {
-    print('here');
-    // transactionBloc.add(GetTransactionData());
     BlocProvider.of<TransactionBloc>(context).add(GetTransactionData());
     super.initState();
   }
@@ -50,8 +48,7 @@ class _MyWidgetState extends State<UserListView> {
     return MultiBlocListener(
       listeners: [
         BlocListener<CounterBloc, int>(
-          listener: (context, state) =>
-              {print('chaging state in user live view')},
+          listener: (context, state) => {},
         ),
         BlocListener<TransactionBloc, TransactionState>(
           listener: (context, state) => {

@@ -102,14 +102,14 @@ class _MyWidgetState extends State<SendMoney> {
     );
   }
 
-  Widget mainContainer() {
+  Widget _mainContainer() {
     return Column(children: [
       GenericHeader(
         title: 'Send Money',
         onBackPressed: onBackPressed,
         trailingView: notificationIcon(),
       ),
-      CounterPage(),
+      const CounterPage(),
       searchContainer(),
       const SizedBox(
         height: 20,
@@ -135,7 +135,7 @@ class _MyWidgetState extends State<SendMoney> {
       ],
       child: Container(
           padding: const EdgeInsets.only(left: 20, right: 20),
-          child: mainContainer()),
+          child: _mainContainer()),
     );
   }
 }

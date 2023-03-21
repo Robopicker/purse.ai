@@ -120,12 +120,7 @@ class _MyWidgetState extends State<MyCard> {
 
   Widget mainContent() {
     return BlocConsumer<TransactionBloc, TransactionState>(
-      listener: (context, state) {
-        // TODO: implement listener
-        if (state is TransactionLoaded) {
-          print("here");
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Column(
           children: [
