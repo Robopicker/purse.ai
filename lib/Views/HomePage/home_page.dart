@@ -14,20 +14,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final screens = [
+    const HomePageContent(),
+    const TransactionPage(),
+    const SendMoney(),
+    const MyCard(),
+    const ProfilePage()
+  ];
+
   int activeIndex = 0;
-  Widget renderContent() {
-    if (activeIndex == 0) {
-      return const HomePageContent();
-    } else if (activeIndex == 1) {
-      return const TransactionPage();
-    } else if (activeIndex == 2) {
-      return const SendMoney();
-    } else if (activeIndex == 3) {
-      return const MyCard();
-    } else {
-      return const ProfilePage();
-    }
-  }
 
   onPressed(index) {
     setState(() {
@@ -40,8 +35,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: renderContent(),
-          ),
+              child: IndexedStack(
+            index: activeIndex,
+            children: screens,
+          )),
         ),
         bottomNavigationBar: GenericBottomBar(
           onPressed: onPressed,

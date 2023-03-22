@@ -123,7 +123,7 @@ class _CardsState extends State<Cards> {
           height: 250,
           child: ScrollSnapList(
             itemBuilder: itemList,
-            itemSize: 290,
+            itemSize: 250,
             itemCount: list.length,
             onItemFocus: (index) => setState(() {
               activeIndex = index;
