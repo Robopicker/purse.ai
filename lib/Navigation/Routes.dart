@@ -6,6 +6,7 @@ import 'package:purse_ai_app/Views/Login/login_page.dart';
 import 'package:purse_ai_app/Views/Login/otp_screen.dart';
 import 'package:purse_ai_app/Views/Login/signup_page.dart';
 import 'package:purse_ai_app/Views/Policies/legal_and_policy.dart';
+import 'package:purse_ai_app/Views/Posts/post_page.dart';
 import 'package:purse_ai_app/Views/Profile/create_password.dart';
 import 'package:purse_ai_app/Views/Profile/forgot_password.dart';
 import 'package:purse_ai_app/Views/Profile/my_profile_page.dart';
@@ -52,6 +53,8 @@ class RouteGenerator {
             builder: ((context) => const LegalAndPolicy()));
       case '/landingPage':
         return MaterialPageRoute(builder: ((context) => const LandingPage()));
+      case '/posts':
+        return MaterialPageRoute(builder: (((context) => const PostsPage())));
       default:
         return MaterialPageRoute(builder: ((context) => const UserLoginPage()));
     }

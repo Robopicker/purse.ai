@@ -7,6 +7,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:purse_ai_app/Navigation/routes.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:purse_ai_app/Views/Posts/simple_bloc_observer.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +17,7 @@ void main() async {
       storageDirectory: kIsWeb
           ? HydratedStorage.webStorageDirectory
           : await getTemporaryDirectory());
+  Bloc.observer = const SimpleBlocObserver();
   runApp(const MyApp());
 }
 
@@ -42,7 +44,7 @@ class _MyWidgetState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/homepage',
+      initialRoute: '/posts',
       onGenerateRoute: RouteGenerator.generateRoute,
       home: Scaffold(
         body: SafeArea(child: Text('adszcsddscvcd')),

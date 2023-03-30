@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:purse_ai_app/Models/post_model.dart';
 import 'package:purse_ai_app/Models/user_model.dart';
 
 class UserProvider {
@@ -17,5 +18,21 @@ class UserProvider {
           name: e['name']['first'] + ' ' + e['name']['last']);
     }).toList();
     return resData;
+  }
+
+  Future<List<PostModel>> fetchPosts([int startIndex = 0]) async {
+    String url =
+        'https://jsonplaceholder.typicode.com/posts?_start=$startIndex&_limit=10';
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    final body = json.decode(response.body) as List;
+    return body.map((dynamic json) {
+      final map = json as Map<String, dynamic>;
+      return PostModel(
+        id: map['id'] as int,
+        title: map['title'] as String,
+        body: map['body'] as String,
+      );
+    }).toList();
   }
 }
